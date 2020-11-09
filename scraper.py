@@ -9,9 +9,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import date
 
-user_mail = 'maxime07@hotmail.fr'
-
-chromedriver_path = "/Users/maximethomas/PycharmProjects/chromedriver"
+user_mail = ''
+mdp_mail = ''
+chromedriver_path = ''
 
 options = Options()
 options.headless = True
@@ -39,12 +39,6 @@ def check_amazon():
     converted_price = float(price[0:4])
     driver.close()
 
-    data_file = open('data.txt', 'a+')
-    data_file.write('\n')
-    data_file.write(str(date.today())+",")
-    data_file.write(str(converted_price))
-    data_file.close()
-
     if converted_price < 1500:
         send_email()
 
@@ -55,7 +49,7 @@ def send_email():
     server.starttls()
     server.ehlo()
 
-    server.login(user_mail, 'sihfsaqjebgegkvx')
+    server.login(user_mail, mdp_mail)
 
     msg = MIMEMultipart()
     msg['From'] = user_mail
