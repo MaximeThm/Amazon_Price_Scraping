@@ -7,7 +7,7 @@ import datetime
 options = Options()
 options.headless = True
 
-driver_path = '/Users/maximethomas/PycharmProjects/chromedriver'
+driver_path = ""
 
 title = []
 description = []
