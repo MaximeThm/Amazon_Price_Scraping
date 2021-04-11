@@ -16,12 +16,10 @@ chromedriver_path = ''
 options = Options()
 options.headless = True
 
+URL = ""
 
-def check_amazon():
-    URL = 'https://www.amazon.fr/Canon-EOS-EF-S-18-135-Nano/dp/B07X3X1Y2L/ref=sr_1_7?__' \
-          'mk_fr_FR=ÅMÅŽÕÑ&dchild=1&keywords=eos+90d&qid=1604613267&quartzVehicle=121-1516&' \
-          'replacementKeywords=90d&sr=8-7'
 
+def check_amazon(URL):
     driver = webdriver.Chrome(chromedriver_path, options=options)
     driver.get(URL)
 
@@ -59,9 +57,20 @@ def send_email():
     message = """
     Check the Amazon link : 
     
-    https://www.amazon.fr/Canon-EOS-EF-S-18-135-Nano/dp/B07X3X1Y2L/ref=sr_1_7?__mk_fr_FR=ÅMÅŽÕÑ&dchild=1&keywords=eos+90d&qid=1604613267&quartzVehicle=121-1516&replacementKeywords=90d&sr=8-7
+    URL    
     
     """
+    """\
+<html>
+  <head></head>
+  <body>
+    <p>Hi!<br>
+       Price felt down ! Check the Amazon link :<br>
+       """ +str(URL) """
+    </p>
+  </body>
+</html>
+"""
 
     msg.attach(MIMEText(message, 'html'))
     server.send_message(msg)
